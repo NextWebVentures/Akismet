@@ -50,6 +50,11 @@ class Akismet
      */
     private $url;
 
+    /**
+     * Is it a test?
+     */
+    private $just_testing = false;
+
 // class methods
     /**
      * Default constructor
@@ -61,10 +66,11 @@ class Akismet
      *                       front page. Note: Must be a full URI, including
      *                       http://.
      */
-    public function __construct($apiKey, $url)
+    public function __construct($apiKey, $url, $test = false)
     {
         $this->setApiKey($apiKey);
         $this->setUrl($url);
+        $this->setTest($test);
     }
 
     /**
@@ -98,6 +104,11 @@ class Akismet
 
         // add url into the parameters
         $aParameters['blog'] = $this->getUrl();
+
+        // mark test requests
+        if ($this->just_testing) {
+            $aParameters['is_test'] = 1;
+        }
 
         // set options
         $options[CURLOPT_URL] = $url;
@@ -233,6 +244,14 @@ class Akismet
     private function setUrl($url)
     {
         $this->url = (string) $url;
+    }
+
+    /**
+     * Set testing flag
+     */
+    private function setTest($test)
+    {
+        $this->just_testing = (boolean) $test;
     }
 
     /**
