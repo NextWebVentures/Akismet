@@ -108,6 +108,12 @@ class Akismet
         // mark test requests
         if ($this->just_testing) {
             $aParameters['is_test'] = 1;
+
+            if (strstr($url, '?') === false) {
+                $url .= '?is_test=1';
+            } else {
+                $url .= '&is_test=1';
+            }
         }
 
         // set options
