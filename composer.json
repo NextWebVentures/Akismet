@@ -1,8 +1,8 @@
 {
-	"name": "tijsverkoyen/akismet",
+	"name": "NextWebVentures/akismet",
 	"type": "library",
 	"description": "Akismet is a wrapper-class to communicate with the Akismet API.",
-	"homepage": "https://github.com/tijsverkoyen/Akismet",
+	"homepage": "https://github.com/NextWebVentures/Akismet",
 	"license": "BSD",
 	"authors": [
 		{
@@ -17,5 +17,8 @@
 	},
 	"autoload": {
 		"classmap": [""]
-	}
+	},
+	"replace": {
+        "tijsverkoyen/akismet": "self.version"
+    }
 }
